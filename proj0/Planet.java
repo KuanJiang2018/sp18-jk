@@ -51,6 +51,7 @@ public class Planet{
 	public double calcNetForceExertedByX(Planet[] ps) {
 		double net = 0;
 		for (Planet p : ps) {
+			if (p.equals(this)) continue;
 			net += calcForceExertedByX(p);
 		}
 
@@ -60,6 +61,7 @@ public class Planet{
 	public double calcNetForceExertedByY(Planet[] ps) {
 		double net = 0;
 		for (Planet p : ps) {
+			if (p.equals(this)) continue;
 			net += calcForceExertedByY(p);
 		}
 
@@ -78,5 +80,10 @@ public class Planet{
 	public void draw() {
 		String path = "images/";
 		StdDraw.picture(this.xxPos, this.yyPos, path + this.imgFileName);
+	}
+
+	@Override
+	public boolean equals(Object p) {
+		return this == p;
 	}
 }
