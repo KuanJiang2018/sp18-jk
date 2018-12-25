@@ -6,8 +6,12 @@ public class ArrayDeque<T> {
     public ArrayDeque() {
         size = 0;
         items = (T[]) new Object[8];
-        nextFirst = 0;
-        nextLast = 1;
+        nextFirst = 4;
+        nextLast = 5;
+    }
+
+    private double ratio() {
+        return (double) size / items.length;
     }
 
     private int minusOne(int index) {
@@ -26,8 +30,29 @@ public class ArrayDeque<T> {
         }
     }
 
-    private void resizing() {
+    private void resizing(int newLen) {
+        if (plusOne(nextFirst) <= minusOne(nextLast)) { // ____xxxx____
+            T[] newItems = (T[]) new Object[newLen];
+            System.arraycopy(items, plusOne(nextFirst), newItems, 0, size);
+            nextFirst = newItems.length - 1;
+            nextLast = size;
+            items = newItems;
+        } else { // xxxx______xxxx
+            T[] newItems = (T[]) new Object[newLen];
+            System.arraycopy(items, 0, newItems, 0, nextLast);
+            System.arraycopy(items, plusOne(nextFirst), newItems, newLen - size + nextFirst, size - nextFirst);
+            items = newItems;
+            nextFirst = minusOne(newLen - size + nextFirst);
+        }
+    }
 
+    private boolean resizeHalf() {
+        if (items.length >= 16 && ratio() < 0.25) return true;
+        return false;
+    }
+
+    private boolean resizeDouble() {
+        return ratio() == 1;
     }
 
     public void  addFirst(T item) {
