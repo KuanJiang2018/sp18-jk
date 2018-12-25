@@ -93,7 +93,7 @@ public class ArrayDeque<T> {
 
         int first = plusOne(nextFirst);
         T item = items[first];
-//        items[first] = null;
+        items[first] = null;
         nextFirst = first;
         size = size - 1;
 
@@ -105,7 +105,7 @@ public class ArrayDeque<T> {
         if (size == 0) return null;
         int last = minusOne(nextLast);
         T item = items[last];
-//        items[last] = null;
+        items[last] = null;
         nextLast = last;
         size = size - 1;
 
