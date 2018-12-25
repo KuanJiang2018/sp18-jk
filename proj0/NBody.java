@@ -59,14 +59,16 @@ public class NBody {
 
 	public static double readRadius(String plantsPath) {
 		In in = new In(plantsPath);
-		int i = in.readInt();
+		in.readInt();
 		return in.readDouble();
 	}
 
 	public static Planet[] readPlanets(String plantsPath) {
 		In in = new In(plantsPath);
 		int num = in.readInt();
+		System.out.println(num);
 		double radius = in.readDouble();
+		System.out.println(radius);
 		Planet[] ps = new Planet[num];
 		for (int i = 0; i < num; i += 1) {
 			double xP = in.readDouble();
