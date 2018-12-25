@@ -48,6 +48,24 @@ public class Planet{
 		return F * (p.yyPos - yyPos) / calcDistance(p);
 	}
 
+	public double calcNetForceExertedByX(Planet[] ps) {
+		double net = 0;
+		for (Planet p : ps) {
+			net += calcForceExertedByX(p);
+		}
+
+		return net;
+	}
+
+	public double calcNetForceExertedByY(Planet[] ps) {
+		double net = 0;
+		for (Planet p : ps) {
+			net += calcForceExertedByY(p);
+		}
+
+		return net;
+	}
+
 	public void update(double dt, double fX, double fY) {
 		double aX = fX / this.mass;
 		double aY = fY / this.mass;
