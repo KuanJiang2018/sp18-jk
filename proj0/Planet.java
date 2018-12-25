@@ -82,8 +82,4 @@ public class Planet{
 		StdDraw.picture(this.xxPos, this.yyPos, path + this.imgFileName);
 	}
 
-	@Override
-	public boolean equals(Object p) {
-		return this == p;
-	}
 }
